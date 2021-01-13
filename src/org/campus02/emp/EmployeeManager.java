@@ -38,7 +38,7 @@ public class EmployeeManager {
 
         for(Employee e : employees) {
             if(resultMap.containsKey(e.getDepartment())) {
-                //update the map value
+                //update the map value by adding 1 more employee
                 ArrayList<Employee> list = resultMap.get(e.getDepartment());
                 list.add(e);
                 resultMap.put(e.getDepartment(),list);
@@ -53,6 +53,34 @@ public class EmployeeManager {
         return resultMap;
 
     }
+
+    public HashMap<String, Integer> getNumberOfEmployeesPerDepartment() {
+        HashMap<String, Integer> resultMap = new HashMap<>();
+        for(Employee e : employees) {
+            if(resultMap.containsKey(e.getDepartment())) {
+                resultMap.put(e.getDepartment(),
+                    resultMap.get(e.getDepartment())+1);
+            } else {
+                resultMap.put(e.getDepartment(),1);
+            }
+        }
+        return resultMap;
+    }
+
+    public HashMap<String, Double> getTotalSalaryCostPerDepartment() {
+        HashMap<String, Double> resultMap = new HashMap<>();
+        for(Employee e : employees) {
+            if(resultMap.containsKey(e.getDepartment())){
+                resultMap.put(e.getDepartment(),
+                    resultMap.get(e.getDepartment())+e.getSalary());
+            } else {
+                resultMap.put(e.getDepartment(),e.getSalary());
+            }
+        }
+        return resultMap;
+    }
+
+
 
 
 
