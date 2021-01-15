@@ -80,6 +80,22 @@ public class WasserstandManager {
 		return found;
 	}
 
+	public HashMap<String, ArrayList<Wasserstand>> getAllWasserstaendePerGewaesser() {
+		HashMap<String, ArrayList<Wasserstand>> resultMap = new HashMap<>();
+		for(Wasserstand w : list) {
+			if(resultMap.containsKey(w.getGewaesserName())) {
+				ArrayList<Wasserstand> list = resultMap.get(w.getGewaesserName());
+				list.add(w);
+				resultMap.put(w.getGewaesserName(),list);
+			} else {
+				ArrayList<Wasserstand> list = new ArrayList<>();
+				list.add(w);
+				resultMap.put(w.getGewaesserName(),list);
+			}
+		}
+		return resultMap;
+	}
+
 	public HashMap<Integer, ArrayList<Wasserstand>> getAllWasserstaendePerZeitpunkt() {
 		HashMap<Integer, ArrayList<Wasserstand>> resultMap = new HashMap<>();
 		for(Wasserstand w : list) {
@@ -91,6 +107,21 @@ public class WasserstandManager {
 			}
 			wasserstaende.add(w);
 			resultMap.put(w.getZeitpunkt(),wasserstaende);
+		}
+		return resultMap;
+	}
+
+	public HashMap<String, Integer> getNumberOfAlarmsPerGewaesser() {
+		HashMap<String, Integer> resultMap = new HashMap<>();
+		for(Wasserstand w : list) {
+			if(resultMap.containsKey(w.getGewaesserName())) {
+				resultMap.put(
+						w.getGewaesserName(),
+						resultMap.get(w.getGewaesserName())+1
+				);
+			} else {
+				resultMap.put(w.getGewaesserName(),1);
+			}
 		}
 		return resultMap;
 	}
@@ -120,6 +151,8 @@ public class WasserstandManager {
 		return resultMap;
 
 	}
+
+
 
 
 }

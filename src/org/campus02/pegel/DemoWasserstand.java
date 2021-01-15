@@ -31,6 +31,12 @@ public class DemoWasserstand {
 		HashMap<String,Double> result2 = wmgr.getAvgMesswertPerGewaesser();
 		System.out.println(result2);
 
+		HashMap<String,ArrayList<Wasserstand>> result3 = wmgr.getAllWasserstaendePerGewaesser();
+		System.out.println(result3);
+
+		HashMap<String,Integer> result4 = wmgr.getNumberOfAlarmsPerGewaesser();
+		System.out.println(result4);
+
 	}
 
 }
